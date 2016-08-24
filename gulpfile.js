@@ -2,6 +2,8 @@ var gulp = require('gulp');
 var uglify = require('gulp-uglify');
 var livereload = require('gulp-livereload');
 var concat = require('gulp-concat');
+var minifyCss = require('gulp-minify-css');
+
 // file paths
 var DIST_PATH = 'public/dist';
 var SCRIPTS_PATH = 'public/scripts/**/*.js';
@@ -12,6 +14,7 @@ gulp.task('styles', function(){
   console.log('Starting styles task');
   return gulp.src(['public/css/reset.css', CSS_PATH])
              .pipe(concat('styles.css'))
+             .pipe(minifyCss())
              .pipe(gulp.dest(DIST_PATH))
              .pipe(livereload());
 });
