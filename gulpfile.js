@@ -55,8 +55,15 @@ gulp.task('scripts', function(){
   console.log('Starting scripts tasks');
 
   return gulp.src(SCRIPTS_PATH)
+             .pipe(plumber(function(err) {
+               console.log('Scripts Task Error');
+               console.log(err);
+               this.emit('end');
+             }))
+             .pipe(sourcemaps.init())
              .pipe(uglify())
              .pipe(concat('scripts.js'))
+             .pipe(sourcemaps.write())
              .pipe(gulp.dest(DIST_PATH))
              .pipe(livereload());
 });
