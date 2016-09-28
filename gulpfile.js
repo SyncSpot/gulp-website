@@ -29,6 +29,8 @@ var SCRIPTS_PATH = 'public/scripts/**/*.js';
 var CSS_PATH = 'public/css/**/*.css';
 var TEMPLATES_PATH = 'templates/**/*.hbs';
 var IMAGES_PATH = 'public/images/**/*.{png,jpeg,jpg,svg,gif}';
+var HTML_PATH = 'public/*.html';
+var FONTS_PATH = 'public/scss/fonts/**/*.{eot,otf,svg,ttf,woff,woff2}';
 
 // Styles CSS
 // gulp.task('styles', function(){
@@ -119,13 +121,35 @@ gulp.task('templates', function() {
              .pipe(livereload());
 });
 
+gulp.task('html' , function(){
+  return gulp.src(HTML_PATH)
+    .pipe(plumber(function(err){
+       console.log('HTML Task Error');
+       console.log(err);
+       this.emit('end');
+    }))
+    .pipe(gulp.dest(DIST_PATH))
+    .pipe(livereload());
+});
+
+gulp.task('fonts', function(){
+  return gulp.src(FONTS_PATH)
+    .pipe(plumber(function(err){
+       console.log('Fonts Task Error');
+       console.log(err);
+       this.emit('end');
+    }))
+    .pipe(gulp.dest(DIST_PATH + '/fonts'))
+    .pipe(livereload());
+});
+
 gulp.task('clean', function() {
   return del.sync([
     DIST_PATH
   ]);
 });
 
-gulp.task('default', ['clean','images', 'templates', 'styles', 'scripts'] ,function(){
+gulp.task('default', ['clean','images', 'templates', 'styles', 'scripts', 'html', 'fonts'] ,function(){
   console.log('Starting default task');
 });
 
@@ -143,4 +167,7 @@ gulp.task('watch', ['default'] ,function(){
   // gulp.watch(CSS_PATH, ['styles']);
   gulp.watch('public/scss/**/*.scss', ['styles']);
   gulp.watch(TEMPLATES_PATH, ['templates']);
+  gulp.watch(HTML_PATH, ['html']);
+  gulp.watch(FONTS_PATH, ['fonts']);
+
 });

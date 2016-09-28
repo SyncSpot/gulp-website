@@ -1,9 +1,33 @@
-@import "./reset/basic-reset";
+@font-face {
+  font-family: 'FuturaStd-Bold';
+  src: url('fonts/FuturaStd-Bold.eot');
+  src: url('fonts/FuturaStd-Bold.woff2') format('woff2'),
+       url('fonts/FuturaStd-Bold.woff') format('woff'),
+       url('fonts/FuturaStd-Bold.ttf') format('truetype'),
+       url('fonts/FuturaStd-Bold.svg#FuturaStd-Bold') format('svg'),
+       url('fonts/FuturaStd-Bold.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
 
+@font-face {
+  font-family: 'FuturaStd-Book';
+  src: url('fonts/FuturaStd-Book.eot');
+  src: url('fonts/FuturaStd-Book.woff2') format('woff2'),
+       url('fonts/FuturaStd-Book.woff') format('woff'),
+       url('fonts/FuturaStd-Book.ttf') format('truetype'),
+       url('fonts/FuturaStd-Book.svg#FuturaStd-Book') format('svg'),
+       url('fonts/FuturaStd-Book.eot?#iefix') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+$brand-color: #d9c76b;
+$brand-color-secondary: #322312;
 $grey: #f7f7f7;
 
 body {
-	background: $grey;
+	background: $brand-color-secondary;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -16,7 +40,8 @@ img {
 }
 
 h1, p {
-	font-family: Helvectica, Arial, sans-serif;
+	font-family: FuturaStd-Book;
+	color: $brand-color;
 	font-weight: 300;
 	margin-bottom: 1.5rem;
 }
